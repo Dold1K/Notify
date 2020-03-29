@@ -25,24 +25,19 @@ client.on("message", msg => {
   //embedMessage
   if (msg.content === prefix + "profile") {
     let user = new Discord.User(client)
-    user = msg.author  
-    let url = msg.user.avatarUrl();
+    let guildIcon = new Discord.Guild()
+    const colors = ["0e69f0", "f21d1d", "670ff5", "0fcbf5", "eff213"]
+    var randomColor = Math.floor(Math.random() * colors.length)
+    guildIcon = msg.guild.icon
+    user = msg.author
     const profile = new Discord.RichEmbed()
-      .setTitle(`Профиль ${user.tag}`)
-      .setColor("0e69f0")
-      .setThumbnail(url)
-      .setDescription()
+      .setTitle(`Профиль ${user.username}`)
+      .setColor(colors[randomColor])
+      //.setAuthor("For Streams", guildIcon)
+      .setThumbnail(user.avatarURL)
+      .setFooter(`ID: "${user.id}"`)
       //.setA()
     msg.channel.send(profile);
-    if (msg.content === 'what is my avatar') {
-      // Send the user's avatar URL
-      msg.reply(msg.author.displayAvatarURL());
-    }
   }
 });
-/*client.on('guildMemberAdd', member => {
-  const channel = member.guild.channels.cache.find(ch => ch.id === "log");
-  if (!channel) return;
-  channel.send(`Welcome to the server, ${member}`);
-});*/
 client.login(token);
