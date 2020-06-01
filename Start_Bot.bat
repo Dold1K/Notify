@@ -1,1 +1,1 @@
-node index.js
+node D:\_Programming\_Discrord_BOT\Notify\index.js
